@@ -1,5 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 export default props => {
-  return <h1>test</h1>;
+  useEffect(() => {
+    alert("loaded");
+  }, []);
+
+  return (
+    <div>
+      <h1>Test</h1>
+    </div>
+  );
 };

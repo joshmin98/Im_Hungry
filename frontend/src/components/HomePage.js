@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 
 const PageLayout = styled.div`
@@ -23,14 +24,15 @@ const SearchButton = styled.button`
   margin: 5px;
 `;
 
-export default props => {
+let HomePage = props => {
   const [searchQuery, setSearchQuery] = useState("");
   const [numResults, setNumResults] = useState(5);
 
   const sendQuery = () => {
-    // Do fetch here
+    // TODO: fetch query
     console.log(searchQuery, numResults);
     alert(`query: ${searchQuery}, num results: ${numResults}`);
+    props.history.push("/lists");
   };
 
   return (
@@ -54,3 +56,5 @@ export default props => {
     </PageLayout>
   );
 };
+
+export default withRouter(HomePage);
