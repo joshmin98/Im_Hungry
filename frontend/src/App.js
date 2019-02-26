@@ -1,15 +1,19 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 import HomePage from "./components/HomePage";
-import { BrowserRouter } from "react-router-dom";
+import ListManagementPage from "./components/ListManagementPage";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <BrowserRouter>
-          <HomePage />
-        </BrowserRouter>
+        <Router>
+          <>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/lists" component={ListManagementPage} />
+          </>
+        </Router>
       </div>
     );
   }
