@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 
@@ -32,7 +32,6 @@ let HomePage = props => {
     // TODO: fetch query
     console.log(searchQuery, numResults);
     alert(`query: ${searchQuery}, num results: ${numResults}`);
-    props.history.push("/lists");
   };
 
   return (
