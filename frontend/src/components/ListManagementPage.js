@@ -33,10 +33,12 @@ const ItemLayout = styled.div`
 
 let ListManagementPage = props => {
   const [loading, setLoading] = useState(true);
+  const [selectedList, setSelectedList] = useState("");
 
   const recipes = [{ title: "test1" }, { title: "test2" }, { title: "test3" }];
 
   useEffect(() => {
+    console.log(props.match.params.list);
     setLoading(false);
   }, []);
 
@@ -45,15 +47,21 @@ let ListManagementPage = props => {
   ) : (
     <div>
       <HeadingLayout>
-        <h1>Favorites</h1>
+        <h1>{props.match.params.list}</h1>
         <NavLayout>
-          <NavSelect>
+          <NavSelect onChange={event => setSelectedList(event.target.value)}>
             <option>Favorites</option>
             <option>To Explore</option>
             <option>Do Not Show</option>
           </NavSelect>
-          <NavButton>Manage Lists</NavButton>
-          <NavButton>Return to Results</NavButton>
+          <NavButton
+            onClick={() => props.history.push(`/lists/${selectedList}`)}
+          >
+            Manage Lists
+          </NavButton>
+          <NavButton onClick={() => props.history.push("/search")}>
+            Return to Results
+          </NavButton>
           <NavButton
             onClick={() => {
               props.history.push("/");
@@ -67,7 +75,6 @@ let ListManagementPage = props => {
         return (
           <ItemLayout key={idx} dark={idx % 2 === 0}>
             <h2>{recipe.title}</h2>
-            {console.log(idx)}
           </ItemLayout>
         );
       })}
