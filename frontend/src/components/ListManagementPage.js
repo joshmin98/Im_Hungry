@@ -28,7 +28,20 @@ const NavButton = styled.button`
 
 const ItemLayout = styled.div`
   display: flex;
+  flex-direction: row;
+  padding: 10px;
+  align-items: flex-start;
+  justify-content: space-between;
   background-color: ${props => (props.dark ? "grey" : "#f5f5f5")};
+`;
+
+const RestaurantItemLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const RecipeItemLayout = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 let ListManagementPage = props => {
@@ -36,14 +49,14 @@ let ListManagementPage = props => {
   const [selectedList, setSelectedList] = useState("");
 
   const recipes = [
-    { title: "Recipe 1" },
-    { title: "Recipe 2" },
-    { title: "Recipe 3" }
+    { title: "Recipe 1", prepTime: 3, cookTime: 20, price: 4.15 },
+    { title: "Recipe 2", prepTime: 4, cookTime: 22, price: 8.3 },
+    { title: "Recipe 3", prepTime: 5, cookTime: 24, price: 12.45 }
   ];
   const restaurants = [
-    { title: "Restaurant 1" },
-    { title: "Restaurant 2" },
-    { title: "Restaurant 3" }
+    { title: "Restaurant 1", driveTime: 20, price: 11.95 },
+    { title: "Restaurant 2", driveTime: 5, price: 5.95 },
+    { title: "Restaurant 3", driveTime: 30, price: 5.65 }
   ];
 
   useEffect(() => {
@@ -90,7 +103,12 @@ let ListManagementPage = props => {
       {recipes.map((recipe, idx) => {
         return (
           <ItemLayout key={"recipe" + idx} dark={idx % 2 === 0}>
-            <h2>{recipe.title}</h2>
+            <RecipeItemLayout>
+              <h2>{recipe.title}</h2>
+              <p>Cook Time: {recipe.cookTime}</p>
+              <p>Prep Time: {recipe.prepTime}</p>
+            </RecipeItemLayout>
+            <h2>${recipe.price}</h2>
           </ItemLayout>
         );
       })}
@@ -98,7 +116,11 @@ let ListManagementPage = props => {
         let isDark = recipes.length % 2 === 0 ? idx % 2 === 0 : idx % 2 !== 0;
         return (
           <ItemLayout key={"restaurant" + idx} dark={isDark}>
-            <h2>{restaurant.title}</h2>
+            <RestaurantItemLayout>
+              <h2>{restaurant.title}</h2>
+              <p>Drive Time: {restaurant.driveTime} mins</p>
+            </RestaurantItemLayout>
+            <h2>${restaurant.price}</h2>
           </ItemLayout>
         );
       })}
