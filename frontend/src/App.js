@@ -12,6 +12,7 @@ class App extends Component {
           <>
             <Route exact path="/" component={HomePage} />
             <Route path="/lists" component={ListManagementPage} />
+            <Route path="/search" component={<div>TODO</div>} />
           </>
         </Router>
       </div>

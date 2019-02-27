@@ -54,7 +54,13 @@ let ListManagementPage = props => {
           </NavSelect>
           <NavButton>Manage Lists</NavButton>
           <NavButton>Return to Results</NavButton>
-          <NavButton>Return to Search</NavButton>
+          <NavButton
+            onClick={() => {
+              props.history.push("/");
+            }}
+          >
+            Return to Search
+          </NavButton>
         </NavLayout>
       </HeadingLayout>
       {recipes.map((recipe, idx) => {

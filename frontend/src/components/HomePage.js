@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 
 const PageLayout = styled.div`
-  background-color: #f5f5f5;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,6 +31,7 @@ let HomePage = props => {
     // TODO: fetch query
     console.log(searchQuery, numResults);
     alert(`query: ${searchQuery}, num results: ${numResults}`);
+    props.history.push("/search");
   };
 
   return (
