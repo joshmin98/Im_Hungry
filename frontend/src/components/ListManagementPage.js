@@ -50,12 +50,17 @@ let ListManagementPage = props => {
         <h1>{props.match.params.list}</h1>
         <NavLayout>
           <NavSelect onChange={event => setSelectedList(event.target.value)}>
+            <option value="" selected="selected" hidden="hidden" />
             <option>Favorites</option>
             <option>To Explore</option>
             <option>Do Not Show</option>
           </NavSelect>
           <NavButton
-            onClick={() => props.history.push(`/lists/${selectedList}`)}
+            onClick={() => {
+              if (selectedList != "") {
+                props.history.push(`/lists/${selectedList}`);
+              }
+            }}
           >
             Manage Lists
           </NavButton>
