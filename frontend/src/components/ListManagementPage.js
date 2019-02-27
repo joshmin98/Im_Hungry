@@ -35,10 +35,18 @@ let ListManagementPage = props => {
   const [loading, setLoading] = useState(true);
   const [selectedList, setSelectedList] = useState("");
 
-  const recipes = [{ title: "test1" }, { title: "test2" }, { title: "test3" }];
+  const recipes = [
+    { title: "Recipe 1" },
+    { title: "Recipe 2" },
+    { title: "Recipe 3" }
+  ];
+  const restaurants = [
+    { title: "Restaurant 1" },
+    { title: "Restaurant 2" },
+    { title: "Restaurant 3" }
+  ];
 
   useEffect(() => {
-    console.log(props.match.params.list);
     setLoading(false);
   }, []);
 
@@ -49,15 +57,18 @@ let ListManagementPage = props => {
       <HeadingLayout>
         <h1>{props.match.params.list}</h1>
         <NavLayout>
-          <NavSelect onChange={event => setSelectedList(event.target.value)}>
-            <option value="" selected="selected" hidden="hidden" />
+          <NavSelect
+            onChange={event => setSelectedList(event.target.value)}
+            defaultValue=""
+          >
+            <option value="" hidden="hidden" />
             <option>Favorites</option>
             <option>To Explore</option>
             <option>Do Not Show</option>
           </NavSelect>
           <NavButton
             onClick={() => {
-              if (selectedList != "") {
+              if (selectedList !== "") {
                 props.history.push(`/lists/${selectedList}`);
               }
             }}
@@ -78,8 +89,16 @@ let ListManagementPage = props => {
       </HeadingLayout>
       {recipes.map((recipe, idx) => {
         return (
-          <ItemLayout key={idx} dark={idx % 2 === 0}>
+          <ItemLayout key={"recipe" + idx} dark={idx % 2 === 0}>
             <h2>{recipe.title}</h2>
+          </ItemLayout>
+        );
+      })}
+      {restaurants.map((restaurant, idx) => {
+        let isDark = recipes.length % 2 === 0 ? idx % 2 === 0 : idx % 2 !== 0;
+        return (
+          <ItemLayout key={"restaurant" + idx} dark={isDark}>
+            <h2>{restaurant.title}</h2>
           </ItemLayout>
         );
       })}
