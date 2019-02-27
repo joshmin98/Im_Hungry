@@ -52,16 +52,16 @@ let ListManagementPage = props => {
   const [selectedList, setSelectedList] = useState("");
 
   /* Start Testing data */
-  const recipes = [
+  const [recipes, setRecipes] = useState([
     { id: 1, title: "Recipe 1", prepTime: 3, cookTime: 20, price: 4.15 },
     { id: 2, title: "Recipe 2", prepTime: 4, cookTime: 22, price: 8.3 },
     { id: 3, title: "Recipe 3", prepTime: 5, cookTime: 24, price: 12.45 }
-  ];
-  const restaurants = [
+  ]);
+  const [restaurants, setRestaurants] = useState([
     { id: 4, title: "Restaurant 1", driveTime: 20, price: 11.95 },
     { id: 5, title: "Restaurant 2", driveTime: 5, price: 5.95 },
     { id: 6, title: "Restaurant 3", driveTime: 30, price: 5.65 }
-  ];
+  ]);
   /* End Testing Data */
 
   /* Load data from localStorage */
@@ -106,6 +106,9 @@ let ListManagementPage = props => {
           </NavButton>
         </NavLayout>
       </HeadingLayout>
+
+      <button onClick={() => setRecipes([])}>TEST</button>
+
       {recipes.map((recipe, idx) => {
         return (
           <Link to={`/recipe/${recipe.id}`} key={"recipe" + idx}>
