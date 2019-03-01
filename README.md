@@ -1,7 +1,7 @@
 # Backend
 
 ## Web Servelet
-Don't worry about this yet. We'll get this done together. (If you want an idea of what we're going to end up with: [this StackOverflow post- we're just going to serve the static "build" folder, and send out index.html file when the client connects to the servelet]: https://stackoverflow.com/questions/132052/servlet-for-serving-static-content)
+Don't worry about this yet. We'll get this done together. (If you want an idea of what we're going to end up with: [this StackOverflow post- we're just going to serve the static "build" folder, and send out index.html file when the client connects to the servelet](https://stackoverflow.com/questions/132052/servlet-for-serving-static-content))
 
 ## Recipe/Restaurant Servelets
 So what's going to happen here is we're going to have a servelet that accepts HTTP GET requests. Our frontend is going to hit this servlet with the following query: `?query=xxx` (where `xxx`) is the item that we are searching for on `HomePage`.
@@ -49,4 +49,7 @@ You'll then get data (JSON) back. What you'll need to do now is format this data
 }
 ```
 
+## Some Resources
+[Here's some info on sending JSON](https://stackoverflow.com/questions/2010990/how-do-you-return-a-json-object-from-a-java-servlet)
 
+[Here's some info on editing JSON Objects within Java](https://stackoverflow.com/questions/15334539/edit-json-fields)
