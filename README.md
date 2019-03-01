@@ -15,14 +15,14 @@ You'll then get data (JSON) back. What you'll need to do now is format this data
 {
 	recipes: [
 	{
-		id: "UNIQUE_ID" (string),
-		ingredients: ["item1", "item2","item3"] (array of strings),
-		price: 999.99 (float),
-		image: "http://image.com/image" (string)
+		"id": "UNIQUE_ID" (string),
+		"ingredients": ["item1", "item2","item3"] (array of strings),
+		"price": 999.99 (float),
+		"image": "http://image.com/image" (string)
 		...
 	},
 	{
-		id: "UNIQUE_ID"
+		"id": "UNIQUE_ID"
 		...
 	}
 	...
@@ -34,14 +34,14 @@ You'll then get data (JSON) back. What you'll need to do now is format this data
 {
 	restaurants: [
 	{
-		id: "UNIQUE_ID" (string),
-		drive_time: 20 (int),
-		price: 999.99 (float),
-		image: "http://image.com/image" (string)
+		"id": "UNIQUE_ID" (string),
+		"drive_time": 20 (int),
+		"price": 999.99 (float),
+		"image": "http://image.com/image" (string)
 		...
 	},
 	{
-		id: "UNIQUE_ID"
+		"id": "UNIQUE_ID"
 		...
 	}
 	...
