@@ -30,6 +30,7 @@ You'll then get data (JSON) back. What you'll need to do now is format this data
 }
 ```
 
+### Restaurant Response
 ```json
 {
 	"restaurants": [
