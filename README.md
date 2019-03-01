@@ -13,7 +13,7 @@ You'll then get data (JSON) back. What you'll need to do now is format this data
 ### Recipe Response
 ```json
 {
-	recipes: [
+	"recipes": [
 	{
 		"id": "UNIQUE_ID" (string),
 		"ingredients": ["item1", "item2","item3"] (array of strings),
@@ -32,7 +32,7 @@ You'll then get data (JSON) back. What you'll need to do now is format this data
 
 ```json
 {
-	restaurants: [
+	"restaurants": [
 	{
 		"id": "UNIQUE_ID" (string),
 		"drive_time": 20 (int),
