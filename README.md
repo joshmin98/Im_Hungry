@@ -6,8 +6,11 @@
 
 # Backend
 
-##Spoonacular API
-It works, but please do not overuse. We have 50 free calls per day, and any additional call costs money. The backend currently pulls data from the Spoonacular API depending on the search query (can pull name, picture, ingredients, time, and price) and needs at least two separate calls per recipe. It returns a JsonNode object. This can be converted into a string through Jackson JSON parsing if needed.
+## Spoonacular API
+It works, but please do not overuse. We have 50 free calls per day, and any additional call costs money. The backend currently pulls data from the Spoonacular API depending on the search query (can pull name, picture, ingredients, time, and price) and needs at least two separate calls per recipe. This data is parsed into a RecipeDetails class.
+
+## Yelp API
+Currently working on integrating this with Maven - emily
 
 ## Web Servelet
 Don't worry about this yet. We'll get this done together. (If you want an idea of what we're going to end up with: [this StackOverflow post- we're just going to serve the static "build" folder, and send out index.html file when the client connects to the servelet](https://stackoverflow.com/questions/132052/servlet-for-serving-static-content))
