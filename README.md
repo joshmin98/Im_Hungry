@@ -1,3 +1,9 @@
+# Frontend
+
+## Using the Mock-API
+1. Install the `json-server` npm package with `npm i -g json-server`
+2. `cd` into the repo root directory and run the command `json-server -p 9999 -w testdb.json`
+
 # Backend
 
 ## Web Servelet

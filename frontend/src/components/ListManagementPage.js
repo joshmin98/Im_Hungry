@@ -50,22 +50,13 @@ let ListManagementPage = props => {
   /* Initialize page state */
   const [loading, setLoading] = useState(true);
   const [selectedList, setSelectedList] = useState("");
-
-  /* Start Testing data */
-  const [recipes, setRecipes] = useState([
-    { id: 1, title: "Recipe 1", prepTime: 3, cookTime: 20, price: 4.15 },
-    { id: 2, title: "Recipe 2", prepTime: 4, cookTime: 22, price: 8.3 },
-    { id: 3, title: "Recipe 3", prepTime: 5, cookTime: 24, price: 12.45 }
-  ]);
-  const [restaurants, setRestaurants] = useState([
-    { id: 4, title: "Restaurant 1", driveTime: 20, price: 11.95 },
-    { id: 5, title: "Restaurant 2", driveTime: 5, price: 5.95 },
-    { id: 6, title: "Restaurant 3", driveTime: 30, price: 5.65 }
-  ]);
-  /* End Testing Data */
+  const [recipes, setRecipes] = useState([]);
+  const [restaurants, setRestaurants] = useState([]);
 
   /* Load data from localStorage */
   useEffect(() => {
+    // setRecipes(localStorage.getItem());
+    // setRestaurants(localStorage.getItem());
     setLoading(false);
   }, []);
 

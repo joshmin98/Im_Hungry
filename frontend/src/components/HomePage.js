@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 
+const url_prefix = "http://localhost:9999";
+
 const PageLayout = styled.div`
   display: flex;
   flex-direction: column;
@@ -28,10 +30,28 @@ let HomePage = props => {
   const [numResults, setNumResults] = useState(5);
 
   const sendQuery = () => {
-    // TODO: fetch query
-    console.log(searchQuery, numResults);
-    alert(`query: ${searchQuery}, num results: ${numResults}`);
-    props.history.push("/search");
+    let recipePromise = fetch(
+      `${url_prefix}/RecipeServlet?query=${searchQuery}&numResults=${numResults}`
+    );
+    let restaurantPromise = fetch(
+      `${url_prefix}/RestaurantServlet?query=${searchQuery}&numResults=${numResults}`
+    );
+
+    recipePromise
+      .then(resp => resp.json())
+      .then(data => {
+        localStorage.setItem("recipes", JSON.stringify(data));
+        console.log(JSON.parse(localStorage.getItem("recipes")));
+      });
+
+    restaurantPromise
+      .then(resp => resp.json())
+      .then(data => {
+        localStorage.setItem("restaurants", JSON.stringify(data));
+        console.log(JSON.parse(localStorage.getItem("recipes")));
+      });
+
+    // props.history.push("/search");
   };
 
   return (
