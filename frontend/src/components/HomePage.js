@@ -51,6 +51,7 @@ let HomePage = props => {
         console.log(JSON.parse(localStorage.getItem("restaurants")));
       });
 
+    // TODO: Search
     // props.history.push("/search");
   };
 
