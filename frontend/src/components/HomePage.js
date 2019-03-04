@@ -47,8 +47,8 @@ let HomePage = props => {
     restaurantPromise
       .then(resp => resp.json())
       .then(data => {
-        localStorage.setItem("restaurants", JSON.stringify(data));
-        console.log(JSON.parse(localStorage.getItem("recipes")));
+        localStorage.setItem("restaurants", JSON.stringify(data.businesses));
+        console.log(JSON.parse(localStorage.getItem("restaurants")));
       });
 
     // props.history.push("/search");
