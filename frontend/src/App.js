@@ -15,7 +15,7 @@ class App extends Component {
             <Route exact path="/" component={HomePage} />
             <Route path="/lists/:list" component={ListManagementPage} />
             <Route path="/restaurant" component={RestaurantPage} />
-            <Route path="/recipe" component={RecipePage} />
+            <Route path="/recipe/:id" component={RecipePage} />
           </>
         </Router>
       </div>

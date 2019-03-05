@@ -46,6 +46,22 @@ class ButtonGroup extends React.Component {
                 pdf.addImage(imgData, 'JPEG', 0, 0);
                 pdf.save("download.pdf");
             });  
+    };
+    addToList = () => {
+        const list = this.state.value;
+        if (list === 'Favorites') {
+            let input = JSON.parse(localStorage.getItem('Favortes'));
+            this.props.restaurant ? input.push({'restaurant' : true, 'id': this.props.id}) : input.push({'restaurant' : false, 'id': this.props.id});
+            localStorage.setItem('Favorites', JSON.stringify(input));
+        } else if (list === 'To Explore') {
+            let input = JSON.parse(localStorage.getItem('To Explore'));
+            this.props.restaurant ? input.push({'restaurant' : true, 'id': this.props.id}) : input.push({'restaurant' : false, 'id': this.props.id});
+            localStorage.setItem('To Explore', JSON.stringify(input));
+        } else if (list === 'Do Not Show') {
+            let input = JSON.parse(localStorage.getItem('Do Not Show'));
+            this.props.restaurant ? input.push({'restaurant' : true, 'id': this.props.id}) : input.push({'restaurant' : false, 'id': this.props.id});
+            localStorage.setItem('Do Not Show', JSON.stringify(input));
+        }
     }
     render() {
         const {classes} = this.props;
@@ -69,7 +85,7 @@ class ButtonGroup extends React.Component {
                             className={classes.dropdown}
                         >
                             <option value="" disabled>
-                                Default
+                                
                             </option>
                             <option value={"Favorites"}>Favorites</option>
                             <option value={"To Explore"}>To Explore</option>
@@ -77,7 +93,7 @@ class ButtonGroup extends React.Component {
                         </NativeSelect>
                     </FormControl>
                 </div>
-                <div><Button className={classes.button} variant="contained">Add to List</Button></div>
+                <div><Button className={classes.button} variant="contained" onClick={this.addToList}>Add to List</Button></div>
             </div>
         ); 
     }
