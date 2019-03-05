@@ -39,7 +39,7 @@ class ButtonGroup extends React.Component {
         const id = this.props.passId;
         const input = document.getElementById(id);
         console.log(id);
-        html2canvas(input)
+        html2canvas(input, {width: '800px', height: '1000px', scale: 0.8})
             .then((canvas) => {
                 const imgData = canvas.toDataURL('/image/png');
                 const pdf = new jsPDF();

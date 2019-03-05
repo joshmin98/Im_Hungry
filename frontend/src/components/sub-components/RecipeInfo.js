@@ -33,7 +33,9 @@ class RecipeInfo extends React.Component {
         Ingredient: ['buns', 'beef patty', 'tomatoes', 'ketchup'],
         Instructions: ['step 1', 'step 2', 'step 3', 'step 4']
     };
-
+    componentDidMount() {
+        console.log(JSON.parse(localStorage.getItem('restaurants')));
+    }
     render() {
         const {classes} = this.props;
         return (
