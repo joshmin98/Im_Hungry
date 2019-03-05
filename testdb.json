@@ -14,11 +14,243 @@
       "instructions":"Preheat the oven to 350F and line a large baking sheet with parchment paper.Peel the sweet potato. Using a box grater with the regular-sized grate holes, grate 1.5 cups of sweet potato. Place in large bowl. I had about 1/2 of the sweet potato leftover, so I sliced it into 1-cm rounds and placed it on the baking sheet. Drizzle with oil and toss to coat.In a large bowl, stir together the grated sweet potato, cilantro, basil, garlic, ginger, and chopped peanuts.In a food processor, add the oats and process until finely chopped. You want the texture to be like a coarse flour. Stir the oat flour into the bowl with the vegetables.Now add the drained chickpeas into the processor and process until finely chopped. You want the mixture to be a cross between a coarse paste and finely chopped chickpeas, but don't completely puree the chickpeas. Stir the processed chickpeas into the bowl with the vegetables and oat flour.In a mug, whisk together the ground flax and water. Let it sit for only 20 seconds or so, any longer and it will get too thick. Stir this flax egg into the vegetable chickpea mixture until fully combined.Stir in the sesame oil, tamari, lime juice, coriander, salt, and pepper all to taste.Shape the mixture into 6-8 patties, packing each patty tightly between your hands so it holds together well. Place each patty onto the prepared baking sheet along with the sweet potato rounds.Bake for 20 minutes, then gently flip the patties and potato rounds and bake for another 15-17 minutes until golden on both sides. You might have to remove the sweet potato a bit early - just keep an eye on them so they don't burn.While the burgers are baking, prepare the peanut sauce. Add all sauce ingredients into a food processor and process until smooth. Adjust ingredients to taste if desired. The sauce will thicken up as it sits.After baking, place patties on a cooling rack for 10 minutes to cool slightly. Serve with toasted buns (or lettuce or whole grain wraps), tomato slices, roasted sweet potato, lettuce, and the peanut sauce.The peanut sauce will store in the fridge for at least a week. The burgers can be frozen (after baking and cooling) for a couple weeks."
     }
   ],
-  "RestaurantServlet": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+  "RestaurantServlet": {
+    "businesses": [
+      {
+	"id": "iHfRp6VYvUcY85OuzOlFUQ",
+	"alias": "la-weekly-burgers-and-beer-los-angeles",
+	"name": "LA Weekly Burgers & Beer",
+	"image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/Xfy9kgozhjuDgm_2AGr-0w/o.jpg",
+	"is_closed": false,
+	"url": "https://www.yelp.com/biz/la-weekly-burgers-and-beer-los-angeles?adjust_creative=TDGLRk9p6uqlW-mfLx7Skw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=TDGLRk9p6uqlW-mfLx7Skw",
+	"review_count": 10,
+	"categories": [
+          {
+            "alias": "burgers",
+            "title": "Burgers"
+          },
+          {
+            "alias": "beer_and_wine",
+            "title": "Beer, Wine & Spirits"
+          }
+	],
+	"rating": 4.5,
+	"coordinates": {
+          "latitude": 34.014091,
+          "longitude": -118.287881
+	},
+	"transactions": [],
+	"price": "$$$",
+	"location": {
+          "address1": "3911 S Figueroa St",
+          "address2": "",
+          "address3": "The Los Angeles Memorial Coliseum",
+          "city": "Los Angeles",
+          "zip_code": "90037",
+          "country": "US",
+          "state": "CA",
+          "display_address": [
+            "3911 S Figueroa St",
+            "The Los Angeles Memorial Coliseum",
+            "Los Angeles, CA 90037"
+          ]
+	},
+	"phone": "+13105747100",
+	"display_phone": "(310) 574-7100",
+	"distance": 759.0293857902742
+      },
+      {
+	"id": "_yVWZKwr_9ne_7ShMscWjA",
+	"alias": "burger-plaza-grill-los-angeles",
+	"name": "Burger Plaza Grill",
+	"image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/t6R8d01_EEBVVsPh38q_rw/o.jpg",
+	"is_closed": false,
+	"url": "https://www.yelp.com/biz/burger-plaza-grill-los-angeles?adjust_creative=TDGLRk9p6uqlW-mfLx7Skw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=TDGLRk9p6uqlW-mfLx7Skw",
+	"review_count": 68,
+	"categories": [
+          {
+            "alias": "burgers",
+            "title": "Burgers"
+          },
+          {
+            "alias": "sandwiches",
+            "title": "Sandwiches"
+          }
+	],
+	"rating": 4.5,
+	"coordinates": {
+          "latitude": 34.01744,
+          "longitude": -118.2783
+	},
+	"transactions": [
+          "delivery",
+          "pickup"
+	],
+	"price": "$",
+	"location": {
+          "address1": "3655 S Grand Ave",
+          "address2": "",
+          "address3": "",
+          "city": "Los Angeles",
+          "zip_code": "90007",
+          "country": "US",
+          "state": "CA",
+          "display_address": [
+            "3655 S Grand Ave",
+            "Los Angeles, CA 90007"
+          ]
+	},
+	"phone": "+12137659787",
+	"display_phone": "(213) 765-9787",
+	"distance": 732.1111160793129
+      },
+      {
+	"id": "cyTW8Ee1wTGbZKWKQFgLWg",
+	"alias": "burgerim-los-angeles-15",
+	"name": "Burgerim",
+	"image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/QO4Owwr5nDka7Vwc5JZ0TQ/o.jpg",
+	"is_closed": false,
+	"url": "https://www.yelp.com/biz/burgerim-los-angeles-15?adjust_creative=TDGLRk9p6uqlW-mfLx7Skw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=TDGLRk9p6uqlW-mfLx7Skw",
+	"review_count": 1,
+	"categories": [
+          {
+            "alias": "hotdogs",
+            "title": "Fast Food"
+          },
+          {
+            "alias": "burgers",
+            "title": "Burgers"
+          },
+          {
+            "alias": "chicken_wings",
+            "title": "Chicken Wings"
+          }
+	],
+	"rating": 4,
+	"coordinates": {
+          "latitude": 34.0318784,
+          "longitude": -118.2841149
+	},
+	"transactions": [],
+	"location": {
+          "address1": "2595 S Hoover St",
+          "address2": null,
+          "address3": "",
+          "city": "Los Angeles",
+          "zip_code": "90007",
+          "country": "US",
+          "state": "CA",
+          "display_address": [
+            "2595 S Hoover St",
+            "Los Angeles, CA 90007"
+          ]
+	},
+	"phone": "+12135365538",
+	"display_phone": "(213) 536-5538",
+	"distance": 1282.6547244661592
+      },
+      {
+	"id": "Cmbs6tWPcLw7QT--Rsg_HQ",
+	"alias": "rock-house-sliders-los-angeles",
+	"name": "Rock House Sliders",
+	"image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/-9lv_p_AmdFam6ZB1vkSBw/o.jpg",
+	"is_closed": false,
+	"url": "https://www.yelp.com/biz/rock-house-sliders-los-angeles?adjust_creative=TDGLRk9p6uqlW-mfLx7Skw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=TDGLRk9p6uqlW-mfLx7Skw",
+	"review_count": 188,
+	"categories": [
+          {
+            "alias": "burgers",
+            "title": "Burgers"
+          },
+          {
+            "alias": "newamerican",
+            "title": "American (New)"
+          }
+	],
+	"rating": 4,
+	"coordinates": {
+          "latitude": 34.0976238134631,
+          "longitude": -118.363132212525
+	},
+	"transactions": [
+          "delivery",
+          "pickup"
+	],
+	"price": "$",
+	"location": {
+          "address1": "7950 W Sunset Blvd",
+          "address2": "Ste 103",
+          "address3": null,
+          "city": "Los Angeles",
+          "zip_code": "90046",
+          "country": "US",
+          "state": "CA",
+          "display_address": [
+            "7950 W Sunset Blvd",
+            "Ste 103",
+            "Los Angeles, CA 90046"
+          ]
+	},
+	"phone": "+13239526016",
+	"display_phone": "(323) 952-6016",
+	"distance": 11163.744727295198
+      },
+      {
+	"id": "Q3pwRtT8v8oTCKFEYJgCbg",
+	"alias": "cassells-hamburgers-los-angeles-2",
+	"name": "Cassell's Hamburgers",
+	"image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/8N68gTRLQEdU74GU-BqdTw/o.jpg",
+	"is_closed": false,
+	"url": "https://www.yelp.com/biz/cassells-hamburgers-los-angeles-2?adjust_creative=TDGLRk9p6uqlW-mfLx7Skw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=TDGLRk9p6uqlW-mfLx7Skw",
+	"review_count": 1352,
+	"categories": [
+          {
+            "alias": "burgers",
+            "title": "Burgers"
+          },
+          {
+            "alias": "breakfast_brunch",
+            "title": "Breakfast & Brunch"
+          },
+          {
+            "alias": "newamerican",
+            "title": "American (New)"
+          }
+	],
+	"rating": 4,
+	"coordinates": {
+          "latitude": 34.0633354187012,
+          "longitude": -118.300720214844
+	},
+	"transactions": [
+          "pickup",
+          "delivery"
+	],
+	"price": "$$",
+	"location": {
+          "address1": "3600 W 6th St",
+          "address2": null,
+          "address3": "",
+          "city": "Los Angeles",
+          "zip_code": "90020",
+          "country": "US",
+          "state": "CA",
+          "display_address": [
+            "3600 W 6th St",
+            "Los Angeles, CA 90020"
+          ]
+	},
+	"phone": "+12133875502",
+	"display_phone": "(213) 387-5502",
+	"distance": 4962.62992846366
+      }
+    ],
+    "total": 2000,
+    "region": {
+      "center": {
+	"longitude": -118.2854,
+	"latitude": 34.0206
+      }
     }
-  ]
+  }
 }
