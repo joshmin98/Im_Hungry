@@ -12,12 +12,13 @@ import java.net.URLEncoder;
 import com.YelpRestaurant.Entities.Root;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
 public class YelpRestaurantService {
 	
 	private static final String apiKey = "Bearer d5CaSD1fY-tiI_b-jD1UZ62Q4PFfnCOCRw6WwzSYdrzyxehoclOrlsYRR0JYQCL5jXie1LaYlgnwD7r22AbAU0WCtPUB3DVccZMatEQ7kFEGCABLHMvz41FsRQJ7XHYx";
-	
 	//coordinates are configured to Tommy Trojan
 	private static final String baseyelpSearchUrl = "https://api.yelp.com/v3/businesses/search?latitude=34.0206&longitude=-118.2854";
 	
@@ -26,7 +27,6 @@ public class YelpRestaurantService {
 	public static String getRestaurantInfo(String term, String limit) {
 		// returns a JSON String of Yelp results
 		String jsonResult = getRestaurantJsonString(term, limit);
-		
 		// Root restaurantInfoObject = toEntity(jsonResult);
 		return jsonResult;
 	} 
@@ -66,7 +66,6 @@ public class YelpRestaurantService {
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
             conn.setRequestProperty("Authorization", apiKey);
-
      
 		if (conn.getResponseCode() != 200) {
             throw new RuntimeException("HTTP GET Request Failed with Error code : "
@@ -101,7 +100,18 @@ public class YelpRestaurantService {
 		    }
 		}
 		
-		return sb.toString();  
-	}	
-
+		String prettyJSON = convertPrettyJSON(sb.toString());
+		System.out.println(prettyJSON);
+		return prettyJSON;  
+	}
+	
+	public static String convertPrettyJSON(String uglyJSON) {
+		
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		JsonParser jp = new JsonParser();
+		JsonElement je = jp.parse(uglyJSON);
+		String prettyJsonString = gson.toJson(je);
+		return prettyJsonString;
+		
+	}
 }
