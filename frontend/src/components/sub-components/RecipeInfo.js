@@ -35,7 +35,28 @@ class RecipeInfo extends React.Component {
     };
     componentDidMount() {
         let info = JSON.parse(localStorage.getItem('recipes'));
-        console.log(info);
+        let ingredients = [];
+        let instructions = [];
+        info.results[this.props.id].analyzedInstructions[0].steps.forEach(el => {
+            // parse ingredients
+            el.ingredients.forEach( ingredient => {
+                ingredients.push(ingredient.name);
+            });
+
+            // parse instructions
+            instructions.push(el.step);
+        });
+
+        console.log(info.results[this.props.id]);
+
+        this.setState({
+            name: info.results[this.props.id].title,
+            img: info.results[this.props.id].image,
+            preptime: info.results[this.props.id].preparationMinutes.toString() + ' mins',
+            cookTime: info.results[this.props.id].cookingMinutes.toString() + ' mins',
+            Ingredient: ingredients,
+            Instructions: instructions
+        })
     }
     render() {
         const {classes} = this.props;

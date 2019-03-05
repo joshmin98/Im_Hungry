@@ -29,7 +29,7 @@ class RecipePage extends React.Component {
                         <RecipeInfo id={this.props.match.params.id}/>
                     </Grid>
                     <Grid item xs={2} className={classes.right}>
-                        <ButtonGroup passId="recipePrint" restaurant={false} id={this.props.match.params.id}/>
+                        <ButtonGroup passId="recipePrint" restaurant={false} id={this.props.match.params.id} history={this.props.history}/>
                     </Grid>
                 </Grid>
                 

@@ -25,12 +25,25 @@ class RestaurantInfo extends React.Component {
         phone: '818-445-7919',
         website: 'facebook.com'
     };
+    componentDidMount() {
+        let info = JSON.parse(localStorage.getItem('restaurants'))[this.props.id];
+        let address = '';
+        info.location.display_address.forEach(el => {
+            address += el + ' '
+        });
+        this.setState({
+            name: info.name,
+            address: address,
+            phone: info.phone,
+            website: info.url
+        });
+    }
     openGoogle = () => {
         let link = 'http://maps.google.com/maps?q=' + encodeURIComponent(this.state.address);
         window.open(link,'blank');
     }
     openWebsite = () => {
-        window.open('https://' + this.state.website, 'blank');
+        window.open(this.state.website, 'blank');
     }
     render() {
         const {classes} = this.props;

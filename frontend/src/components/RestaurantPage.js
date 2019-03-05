@@ -26,10 +26,10 @@ class RestaurantPage extends React.Component {
             <div className={classes.root} id="restaurantPrint">
                 <Grid container spacing={24}>
                     <Grid item xs={10} className={classes.left}>
-                        <RestaurantInfo />
+                        <RestaurantInfo id={this.props.match.params.id}/>
                     </Grid>
                     <Grid item xs={2} className={classes.right}>
-                        <ButtonGroup passId="restaurantPrint" restaurant={true} />
+                        <ButtonGroup passId="restaurantPrint" restaurant={true} id={this.props.match.params.id} history={this.props.history}/>
                     </Grid>
                 </Grid>
                 
