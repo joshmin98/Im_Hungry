@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import HomePage from "./components/HomePage";
 import ListManagementPage from "./components/ListManagementPage";
-import RestaurantPage from './components/RestaurantPage';
-import RecipePage from './components/RecipePage';
+import RestaurantPage from "./components/RestaurantPage";
+import RecipePage from "./components/RecipePage";
+import SearchPage from "./components/SearchPage";
 
 class App extends Component {
   render() {
@@ -16,6 +17,8 @@ class App extends Component {
             <Route path="/lists/:list" component={ListManagementPage} />
             <Route path="/restaurant" component={RestaurantPage} />
             <Route path="/recipe/:id" component={RecipePage} />
+            <Route path="/search" component={SearchPage} />
+
           </>
         </Router>
       </div>

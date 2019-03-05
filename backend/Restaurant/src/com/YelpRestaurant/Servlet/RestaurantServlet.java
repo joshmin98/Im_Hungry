@@ -21,7 +21,7 @@ public class RestaurantServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
-     * Default constructor. 
+     * Default constructor.
      */
     public RestaurantServlet() {
     	super();
@@ -36,7 +36,6 @@ public class RestaurantServlet extends HttpServlet {
 		
 		// Get queries
 		String term = request.getParameter("query");
-	
 		String limit = request.getParameter("numResults");
 		
 		// contains restaurant JSON string results
