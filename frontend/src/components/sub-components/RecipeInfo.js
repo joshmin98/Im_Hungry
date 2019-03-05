@@ -34,7 +34,8 @@ class RecipeInfo extends React.Component {
         Instructions: ['step 1', 'step 2', 'step 3', 'step 4']
     };
     componentDidMount() {
-        console.log(JSON.parse(localStorage.getItem('restaurants')));
+        let info = JSON.parse(localStorage.getItem('recipes'));
+        console.log(info);
     }
     render() {
         const {classes} = this.props;

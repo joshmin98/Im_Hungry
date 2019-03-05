@@ -29,7 +29,7 @@ class RestaurantPage extends React.Component {
                         <RestaurantInfo />
                     </Grid>
                     <Grid item xs={2} className={classes.right}>
-                        <ButtonGroup passId="restaurantPrint"/>
+                        <ButtonGroup passId="restaurantPrint" restaurant={true} />
                     </Grid>
                 </Grid>
                 
