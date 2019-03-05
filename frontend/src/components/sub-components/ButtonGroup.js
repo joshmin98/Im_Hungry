@@ -48,20 +48,22 @@ class ButtonGroup extends React.Component {
             });  
     };
     addToList = () => {
-        const list = this.state.value;
-        if (list === 'Favorites') {
-            let input = JSON.parse(localStorage.getItem('Favortes'));
-            this.props.restaurant ? input.push({'restaurant' : true, 'id': this.props.id}) : input.push({'restaurant' : false, 'id': this.props.id});
-            localStorage.setItem('Favorites', JSON.stringify(input));
-        } else if (list === 'To Explore') {
-            let input = JSON.parse(localStorage.getItem('To Explore'));
-            this.props.restaurant ? input.push({'restaurant' : true, 'id': this.props.id}) : input.push({'restaurant' : false, 'id': this.props.id});
-            localStorage.setItem('To Explore', JSON.stringify(input));
-        } else if (list === 'Do Not Show') {
-            let input = JSON.parse(localStorage.getItem('Do Not Show'));
-            this.props.restaurant ? input.push({'restaurant' : true, 'id': this.props.id}) : input.push({'restaurant' : false, 'id': this.props.id});
-            localStorage.setItem('Do Not Show', JSON.stringify(input));
-        }
+        console.log(localStorage);
+        // const list = this.state.value;
+        // if (list === 'Favorites') {
+        //     let input = JSON.parse(localStorage.getItem('Favortes'));
+        //     this.props.restaurant ? input.push({'restaurant' : true, 'id': this.props.id}) : input.push({'restaurant' : false, 'id': this.props.id});
+        //     localStorage.setItem('Favorites', JSON.stringify(input));
+        // } else if (list === 'To Explore') {
+        //     let input = JSON.parse(localStorage.getItem('To Explore'));
+        //     this.props.restaurant ? input.push({'restaurant' : true, 'id': this.props.id}) : input.push({'restaurant' : false, 'id': this.props.id});
+        //     localStorage.setItem('To Explore', JSON.stringify(input));
+        // } else if (list === 'Do Not Show') {
+        //     let input = JSON.parse(localStorage.getItem('Do Not Show'));
+        //     this.props.restaurant ? input.push({'restaurant' : true, 'id': this.props.id}) : input.push({'restaurant' : false, 'id': this.props.id});
+        //     localStorage.setItem('Do Not Show', JSON.stringify(input));
+        // }
+        //console.log(localStorage);
     }
     render() {
         const {classes} = this.props;

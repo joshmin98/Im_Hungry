@@ -27,7 +27,6 @@ class RestaurantInfo extends React.Component {
     };
     openGoogle = () => {
         let link = 'http://maps.google.com/maps?q=' + encodeURIComponent(this.state.address);
-        console.log(link);
         window.open(link,'blank');
     }
     openWebsite = () => {
