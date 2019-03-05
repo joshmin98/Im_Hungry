@@ -41,18 +41,38 @@ let HomePage = props => {
       .then(resp => resp.json())
       .then(data => {
         localStorage.setItem("recipes", JSON.stringify(data));
-        console.log(JSON.parse(localStorage.getItem("recipes")));
+        console.log(
+          "Restaurants:",
+          JSON.parse(localStorage.getItem("recipes"))
+        );
       });
 
     restaurantPromise
       .then(resp => resp.json())
       .then(data => {
         localStorage.setItem("restaurants", JSON.stringify(data.businesses));
-        console.log(JSON.parse(localStorage.getItem("restaurants")));
+        console.log(
+          "Recipes:",
+          JSON.parse(localStorage.getItem("restaurants"))
+        );
       });
 
+    // {restaurant: true, id: xxx}
+    if (localStorage.getItem("Favorites") == null) {
+      localStorage.setItem("Favorites", JSON.stringify([]));
+      console.log("created favorites");
+    }
+    if (localStorage.getItem("To Explore") == null) {
+      localStorage.setItem("To Explore", JSON.stringify([]));
+      console.log("created to explore");
+    }
+    if (localStorage.getItem("Do Not Show") == null) {
+      localStorage.setItem("Do Not Show", JSON.stringify([]));
+      console.log("created do not show");
+    }
     // TODO: Search
-    // props.history.push("/search");
+    alert("wait!");
+    props.history.push("/search");
   };
 
   return (
