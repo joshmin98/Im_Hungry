@@ -22,7 +22,6 @@ const ItemLayout = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   background-color: ${props => (props.dark ? "grey" : "#f5f5f5")};
-  height: 10%;
 `;
 
 const RestaurantItemLayout = styled.div`
@@ -74,17 +73,18 @@ const Photo = styled.img`
 let SearchPage = props => {
   const [restaurants, setRestaurants] = useState([{}]);
   const [recipes, setRecipes] = useState({ results: [{}] });
+  const [query, setQuery] = useState("");
   const [selectedList, setSelectedList] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log(props.location.state);
     let localStorageRecipes = JSON.parse(localStorage.getItem("recipes"));
     let localStorageRestaurants = JSON.parse(
       localStorage.getItem("restaurants")
     );
     setRestaurants(localStorageRestaurants);
     setRecipes(localStorageRecipes);
+    setQuery(localStorage.getItem("query"));
     setLoading(false);
   }, []);
 
@@ -93,7 +93,7 @@ let SearchPage = props => {
   ) : (
     <Container>
       <HeadingLayout>
-        <h1>Search Results for {props.location.state.query}</h1>
+        <h1>Search Results for {query}</h1>
         <NavLayout>
           <NavSelect
             onChange={event => setSelectedList(event.target.value)}

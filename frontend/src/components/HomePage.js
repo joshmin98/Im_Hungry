@@ -104,12 +104,12 @@ let HomePage = props => {
         }
       })
       .then(() => {
+        localStorage.setItem("query", searchQuery);
         props.history.push({
           pathname: "/search",
           state: {
             recipes: JSON.parse(localStorage.getItem("searchRecipes")),
-            restaurants: JSON.parse(localStorage.getItem("searchRestaurants")),
-            query: searchQuery
+            restaurants: JSON.parse(localStorage.getItem("searchRestaurants"))
           }
         });
       });
