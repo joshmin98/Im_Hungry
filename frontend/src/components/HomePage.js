@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 
+import { HungryProvider, HungryConsumer } from "./Context";
+
 const url_prefix = "http://localhost:9999";
 
 const PageLayout = styled.div`
@@ -28,8 +30,16 @@ const SearchButton = styled.button`
 let HomePage = props => {
   const [searchQuery, setSearchQuery] = useState("");
   const [numResults, setNumResults] = useState(5);
+  const [loading, setLoading] = useState(false);
 
   const sendQuery = () => {
+    if (numResults < 5) {
+      alert("Results must be greater than 5!");
+      return;
+    }
+
+    setLoading(true);
+
     fetch(
       `${url_prefix}/RecipeServlet?query=${searchQuery}&numResults=${numResults}`
     )
@@ -105,13 +115,11 @@ let HomePage = props => {
       })
       .then(() => {
         localStorage.setItem("query", searchQuery);
-        props.history.push({
-          pathname: "/search",
-          state: {
-            recipes: JSON.parse(localStorage.getItem("searchRecipes")),
-            restaurants: JSON.parse(localStorage.getItem("searchRestaurants"))
-          }
-        });
+        let restaurants = JSON.parse(localStorage.getItem("restaurants"));
+        let recipes = JSON.parse(localStorage.getItem("recipes"));
+        window.setTimeout(() => {
+          props.history.push("/search");
+        }, 1000);
       });
   };
 
@@ -133,6 +141,7 @@ let HomePage = props => {
         />
         <SearchButton onClick={sendQuery}>I'm Hungry</SearchButton>
       </SearchLayout>
+      {loading ? <p>Loading...</p> : null}
     </PageLayout>
   );
 };

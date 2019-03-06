@@ -18,7 +18,6 @@ class App extends Component {
             <Route path="/restaurant/:id" component={RestaurantPage} />
             <Route path="/recipe/:id" component={RecipePage} />
             <Route path="/search" component={SearchPage} />
-
           </>
         </Router>
       </div>
