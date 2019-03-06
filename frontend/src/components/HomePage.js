@@ -108,7 +108,8 @@ let HomePage = props => {
           pathname: "/search",
           state: {
             recipes: JSON.parse(localStorage.getItem("searchRecipes")),
-            restaurants: JSON.parse(localStorage.getItem("searchRestaurants"))
+            restaurants: JSON.parse(localStorage.getItem("searchRestaurants")),
+            query: searchQuery
           }
         });
       });

@@ -57,6 +57,20 @@ const NavButton = styled.button`
   margin: 5px;
 `;
 
+const PhotoBox = styled.div`
+  position: relative;
+  width: 100%;
+  height: 40%;
+  padding: 40%;
+`;
+
+const Photo = styled.img`
+  position: absolute;
+  top: ${props => props.top}%;
+  left: ${props => props.left}%;
+  transform: rotate(${props => props.rot}deg);
+`;
+
 let SearchPage = props => {
   const [restaurants, setRestaurants] = useState([{}]);
   const [recipes, setRecipes] = useState({ results: [{}] });
@@ -79,7 +93,7 @@ let SearchPage = props => {
   ) : (
     <Container>
       <HeadingLayout>
-        <h1>Search Results for </h1>
+        <h1>Search Results for {props.location.state.query}</h1>
         <NavLayout>
           <NavSelect
             onChange={event => setSelectedList(event.target.value)}
@@ -108,6 +122,7 @@ let SearchPage = props => {
           </NavButton>
         </NavLayout>
       </HeadingLayout>
+
       <ColumnLayout>
         <div>
           <h2>Restaurants</h2>
