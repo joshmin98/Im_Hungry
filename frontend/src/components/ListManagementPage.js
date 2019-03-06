@@ -3,10 +3,14 @@ import { withRouter, Link } from "react-router-dom";
 import styled from "styled-components";
 
 /* Start page styling */
+let Container = styled.div`
+  padding-left: 10px;
+  padding-right: 10px;
+`;
+
 const HeadingLayout = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 10px;
   align-items: flex-start;
   justify-content: space-between;
 `;
@@ -50,20 +54,31 @@ let ListManagementPage = props => {
   /* Initialize page state */
   const [loading, setLoading] = useState(true);
   const [selectedList, setSelectedList] = useState("");
-  const [recipes, setRecipes] = useState([]);
+  const [recipes, setRecipes] = useState({ results: [{}] });
   const [restaurants, setRestaurants] = useState([]);
 
   /* Load data from localStorage */
   useEffect(() => {
-    // setRecipes(localStorage.getItem());
-    // setRestaurants(localStorage.getItem());
+    let localStorageRecipes = JSON.parse(
+      localStorage.getItem(props.match.params.list)
+    );
+    console.log(localStorageRecipes);
+    localStorageRecipes = localStorageRecipes.recipes;
+    setRecipes(localStorageRecipes);
+
+    let localStorageRestaurants = JSON.parse(
+      localStorage.getItem(props.match.params.list)
+    );
+    localStorageRestaurants = localStorageRestaurants.restaurants;
+    setRestaurants(localStorageRestaurants);
+
     setLoading(false);
   }, []);
 
   let results = loading ? (
     <p>Loading...</p>
   ) : (
-    <div>
+    <Container>
       <HeadingLayout>
         <h1>{props.match.params.list}</h1>
         <NavLayout>
@@ -98,18 +113,20 @@ let ListManagementPage = props => {
         </NavLayout>
       </HeadingLayout>
 
-      <button onClick={() => setRecipes([])}>TEST</button>
-
       {recipes.map((recipe, idx) => {
         return (
           <Link to={`/recipe/${recipe.id}`} key={"recipe" + idx}>
             <ItemLayout dark={idx % 2 === 0}>
               <RecipeItemLayout>
                 <h2>{recipe.title}</h2>
-                <p>Cook Time: {recipe.cookTime}</p>
-                <p>Prep Time: {recipe.prepTime}</p>
+                <p>
+                  Prep:{" "}
+                  {recipe.preparationMinutes ? recipe.preparationMinutes : "?"}{" "}
+                  minutes
+                </p>
+                <p>Cook: {recipe.readyInMinutes} minutes</p>
               </RecipeItemLayout>
-              <h2>${recipe.price}</h2>
+              <h2>${recipe.pricePerServing / 100}</h2>
             </ItemLayout>
           </Link>
         );
@@ -120,15 +137,16 @@ let ListManagementPage = props => {
           <Link to={`/restaurant/${restaurant.id}`} key={"restaurant" + idx}>
             <ItemLayout dark={isDark}>
               <RestaurantItemLayout>
-                <h2>{restaurant.title}</h2>
-                <p>Drive Time: {restaurant.driveTime} mins</p>
+                <h2>{restaurant.name}</h2>
+                <p>Drive: </p>
+                <p />
               </RestaurantItemLayout>
-              <h2>${restaurant.price}</h2>
+              <h2>{restaurant.price}</h2>
             </ItemLayout>
           </Link>
         );
       })}
-    </div>
+    </Container>
   );
   return results;
 };

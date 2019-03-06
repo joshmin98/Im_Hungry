@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 
@@ -40,38 +40,48 @@ let HomePage = props => {
     recipePromise
       .then(resp => resp.json())
       .then(data => {
-        localStorage.setItem("recipes", JSON.stringify(data));
-        console.log(
-          "Restaurants:",
-          JSON.parse(localStorage.getItem("recipes"))
-        );
+        localStorage.setItem("recipes", JSON.stringify(data)).then(() => {});
       });
 
     restaurantPromise
       .then(resp => resp.json())
       .then(data => {
-        localStorage.setItem("restaurants", JSON.stringify(data.businesses));
-        console.log(
-          "Recipes:",
-          JSON.parse(localStorage.getItem("restaurants"))
-        );
+        localStorage
+          .setItem("restaurants", JSON.stringify(data.businesses))
+          .then(() => {});
       });
 
     // {restaurant: true, id: xxx}
     if (localStorage.getItem("Favorites") == null) {
-      localStorage.setItem("Favorites", JSON.stringify([]));
+      localStorage.setItem(
+        "Favorites",
+        JSON.stringify({
+          recipes: [],
+          restaurants: []
+        })
+      );
       console.log("created favorites");
     }
     if (localStorage.getItem("To Explore") == null) {
-      localStorage.setItem("To Explore", JSON.stringify([]));
+      localStorage.setItem(
+        "To Explore",
+        JSON.stringify({
+          recipes: [],
+          restaurants: []
+        })
+      );
       console.log("created to explore");
     }
     if (localStorage.getItem("Do Not Show") == null) {
-      localStorage.setItem("Do Not Show", JSON.stringify([]));
+      localStorage.setItem(
+        "Do Not Show",
+        JSON.stringify({
+          recipes: [],
+          restaurants: []
+        })
+      );
       console.log("created do not show");
     }
-    // TODO: Search
-    alert("wait!");
     props.history.push("/search");
   };
 
