@@ -51,9 +51,12 @@ let HomePage = props => {
         if (recipes == null) {
           recipes = localStorage.getItem("searchRecipes");
           localStorage.setItem("recipes", recipes);
+          localStorage.setItem("recipeIndex", "0");
         } else {
           let newRecipes = JSON.parse(localStorage.getItem("searchRecipes"));
           recipes = JSON.parse(localStorage.getItem("recipes"));
+          let recipeIndex = recipes.results.length;
+          localStorage.setItem("recipeIndex", recipeIndex.toString());
           recipes.results.push(...newRecipes.results);
           localStorage.setItem("recipes", JSON.stringify(recipes));
         }
@@ -73,11 +76,17 @@ let HomePage = props => {
             if (restaurants == null) {
               restaurants = localStorage.getItem("searchRestaurants");
               localStorage.setItem("restaurants", restaurants);
+              localStorage.setItem("restaurantIndex", "0");
             } else {
               let newRestaurants = JSON.parse(
                 localStorage.getItem("searchRestaurants")
               );
               restaurants = JSON.parse(localStorage.getItem("restaurants"));
+              let restaurantIndex = restaurants.length;
+              localStorage.setItem(
+                "restaurantIndex",
+                restaurantIndex.toString()
+              );
               restaurants.push(...newRestaurants);
               localStorage.setItem("restaurants", JSON.stringify(restaurants));
             }
@@ -119,7 +128,7 @@ let HomePage = props => {
         let recipes = JSON.parse(localStorage.getItem("recipes"));
         window.setTimeout(() => {
           props.history.push("/search");
-        }, 1000);
+        }, 2000);
       });
   };
 

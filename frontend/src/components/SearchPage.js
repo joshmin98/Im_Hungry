@@ -76,14 +76,20 @@ let SearchPage = props => {
   const [query, setQuery] = useState("");
   const [selectedList, setSelectedList] = useState("");
   const [loading, setLoading] = useState(true);
+  const [recipeOffset, setRecipeOffset] = useState(0);
+  const [restaurantOffset, setRestaurantOffset] = useState(0);
 
   useEffect(() => {
-    let localStorageRecipes = JSON.parse(localStorage.getItem("recipes"));
+    let localStorageRecipes = JSON.parse(localStorage.getItem("searchRecipes"));
     let localStorageRestaurants = JSON.parse(
-      localStorage.getItem("restaurants")
+      localStorage.getItem("searchRestaurants")
     );
+    let restaurantIndex = parseInt(localStorage.getItem("restaurantIndex"));
+    let recipeIndex = parseInt(localStorage.getItem("recipeIndex"));
     setRestaurants(localStorageRestaurants);
+    setRestaurantOffset(restaurantIndex);
     setRecipes(localStorageRecipes);
+    setRecipeOffset(recipeIndex);
     setQuery(localStorage.getItem("query"));
     setLoading(false);
   }, []);
@@ -130,7 +136,10 @@ let SearchPage = props => {
             let isDark =
               restaurants.length % 2 === 0 ? idx % 2 === 0 : idx % 2 !== 0;
             return (
-              <Link to={`/restaurant/${idx}`} key={`restaurant-${idx}`}>
+              <Link
+                to={`/restaurant/${idx + restaurantOffset}`}
+                key={`restaurant-${idx}`}
+              >
                 <ItemLayout dark={isDark}>
                   <RestaurantItemLayout>
                     <h2>{restaurant.name}</h2>
@@ -149,7 +158,7 @@ let SearchPage = props => {
             let isDark =
               restaurants.length % 2 === 0 ? idx % 2 === 0 : idx % 2 !== 0;
             return (
-              <Link to={`/recipe/${idx}`} key={`recipe-${idx}`}>
+              <Link to={`/recipe/${idx + recipeOffset}`} key={`recipe-${idx}`}>
                 <ItemLayout dark={isDark}>
                   <RecipeItemLayout>
                     <h2>{recipe.title}</h2>
