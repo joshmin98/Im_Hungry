@@ -3,6 +3,7 @@ import { withRouter, Link } from "react-router-dom";
 import styled from "styled-components";
 import ButtonGroup from "./sub-components/ButtonGroup";
 
+// TODO: Do not show
 let Container = styled.div`
   padding-left: 10px;
   padding-right: 10px;
@@ -65,6 +66,7 @@ const PhotoBox = styled.div`
 
 const Photo = styled.img`
   position: absolute;
+  width: 200px;
   top: ${props => props.top}%;
   left: ${props => props.left}%;
   transform: rotate(${props => props.rot}deg);
@@ -98,6 +100,8 @@ let SearchPage = props => {
     <div>Loading...</div>
   ) : (
     <Container>
+      {console.log(restaurants)}
+      {console.log(recipes)}
       <HeadingLayout>
         <h1>Search Results for {query}</h1>
         <NavLayout>
@@ -128,6 +132,29 @@ let SearchPage = props => {
           </NavButton>
         </NavLayout>
       </HeadingLayout>
+
+      <PhotoBox>
+        {recipes.results.map((recipe, idx) => {
+          return (
+            <Photo
+              left={Math.random() * (idx + 25)}
+              top={Math.random() * (idx + 25)}
+              rot={Math.random() * (idx + 30)}
+              src={recipe.image}
+            />
+          );
+        })}
+        {restaurants.map((restaurant, idx) => {
+          return (
+            <Photo
+              left={Math.random() * (idx + 25)}
+              top={Math.random() * (idx + 25)}
+              rot={Math.random() * (idx + 30)}
+              src={restaurant.image_url}
+            />
+          );
+        })}
+      </PhotoBox>
 
       <ColumnLayout>
         <div>
