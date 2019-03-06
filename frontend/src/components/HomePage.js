@@ -30,59 +30,88 @@ let HomePage = props => {
   const [numResults, setNumResults] = useState(5);
 
   const sendQuery = () => {
-    let recipePromise = fetch(
+    fetch(
       `${url_prefix}/RecipeServlet?query=${searchQuery}&numResults=${numResults}`
-    );
-    let restaurantPromise = fetch(
-      `${url_prefix}/RestaurantServlet?query=${searchQuery}&numResults=${numResults}`
-    );
-
-    recipePromise
+    )
       .then(resp => resp.json())
       .then(data => {
-        localStorage.setItem("recipes", JSON.stringify(data)).then(() => {});
-      });
+        localStorage.setItem("searchRecipes", JSON.stringify(data));
 
-    restaurantPromise
-      .then(resp => resp.json())
-      .then(data => {
-        localStorage
-          .setItem("restaurants", JSON.stringify(data.businesses))
-          .then(() => {});
-      });
+        let recipes = JSON.parse(localStorage.getItem("recipes"));
+        if (recipes == null) {
+          recipes = localStorage.getItem("searchRecipes");
+          localStorage.setItem("recipes", recipes);
+        } else {
+          let newRecipes = JSON.parse(localStorage.getItem("searchRecipes"));
+          recipes = JSON.parse(localStorage.getItem("recipes"));
+          recipes.results.push(...newRecipes.results);
+          localStorage.setItem("recipes", JSON.stringify(recipes));
+        }
+      })
+      .then(() => {
+        fetch(
+          `${url_prefix}/RestaurantServlet?query=${searchQuery}&numResults=${numResults}`
+        )
+          .then(resp => resp.json())
+          .then(data => {
+            localStorage.setItem(
+              "searchRestaurants",
+              JSON.stringify(data.businesses)
+            );
 
-    // {restaurant: true, id: xxx}
-    if (localStorage.getItem("Favorites") == null) {
-      localStorage.setItem(
-        "Favorites",
-        JSON.stringify({
-          recipes: [],
-          restaurants: []
-        })
-      );
-      console.log("created favorites");
-    }
-    if (localStorage.getItem("To Explore") == null) {
-      localStorage.setItem(
-        "To Explore",
-        JSON.stringify({
-          recipes: [],
-          restaurants: []
-        })
-      );
-      console.log("created to explore");
-    }
-    if (localStorage.getItem("Do Not Show") == null) {
-      localStorage.setItem(
-        "Do Not Show",
-        JSON.stringify({
-          recipes: [],
-          restaurants: []
-        })
-      );
-      console.log("created do not show");
-    }
-    props.history.push("/search");
+            let restaurants = JSON.parse(localStorage.getItem("restaurants"));
+            if (restaurants == null) {
+              restaurants = localStorage.getItem("searchRestaurants");
+              localStorage.setItem("restaurants", restaurants);
+            } else {
+              let newRestaurants = JSON.parse(
+                localStorage.getItem("searchRestaurants")
+              );
+              restaurants = JSON.parse(localStorage.getItem("restaurants"));
+              restaurants.push(...newRestaurants);
+              localStorage.setItem("restaurants", JSON.stringify(restaurants));
+            }
+          });
+      })
+      .then(() => {
+        // {restaurant: true, id: xxx}
+        if (localStorage.getItem("Favorites") == null) {
+          localStorage.setItem(
+            "Favorites",
+            JSON.stringify({
+              recipes: [],
+              restaurants: []
+            })
+          );
+        }
+        if (localStorage.getItem("To Explore") == null) {
+          localStorage.setItem(
+            "To Explore",
+            JSON.stringify({
+              recipes: [],
+              restaurants: []
+            })
+          );
+        }
+        if (localStorage.getItem("Do Not Show") == null) {
+          localStorage.setItem(
+            "Do Not Show",
+            JSON.stringify({
+              recipes: [],
+              restaurants: []
+            })
+          );
+        }
+      })
+      .then(() => {
+        props.history.push({
+          pathname: "/search",
+          state: {
+            recipes: JSON.parse(localStorage.getItem("searchRecipes")),
+            restaurants: JSON.parse(localStorage.getItem("searchRestaurants"))
+          }
+        });
+      });
   };
 
   return (

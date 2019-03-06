@@ -64,6 +64,7 @@ let SearchPage = props => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log(props.location.state);
     let localStorageRecipes = JSON.parse(localStorage.getItem("recipes"));
     let localStorageRestaurants = JSON.parse(
       localStorage.getItem("restaurants")
@@ -73,92 +74,88 @@ let SearchPage = props => {
     setLoading(false);
   }, []);
 
-  let results = <div>Loading...</div>;
-  if (!loading) {
-    results = (
-      <Container>
-        <HeadingLayout>
-          <h1>Search Results for </h1>
-          <NavLayout>
-            <NavSelect
-              onChange={event => setSelectedList(event.target.value)}
-              defaultValue=""
-            >
-              <option value="" hidden="hidden" />
-              <option>Favorites</option>
-              <option>To Explore</option>
-              <option>Do Not Show</option>
-            </NavSelect>
-            <NavButton
-              onClick={() => {
-                if (selectedList !== "") {
-                  props.history.push(`/lists/${selectedList}`);
-                }
-              }}
-            >
-              Manage Lists
-            </NavButton>
-            <NavButton
-              onClick={() => {
-                props.history.push("/");
-              }}
-            >
-              Return to Search
-            </NavButton>
-          </NavLayout>
-        </HeadingLayout>
-        <ColumnLayout>
-          <div>
-            <h2>Restaurants</h2>
-            {restaurants.map((restaurant, idx) => {
-              let isDark =
-                restaurants.length % 2 === 0 ? idx % 2 === 0 : idx % 2 !== 0;
-              return (
-                <Link
-                  to={`/restaurant/${restaurant.id}`}
-                  key={`restaurant-${idx}`}
-                >
-                  <ItemLayout dark={isDark}>
-                    <RestaurantItemLayout>
-                      <h2>{restaurant.name}</h2>
-                      <p>Drive: </p>
-                      <p />
-                    </RestaurantItemLayout>
-                    <h2>{restaurant.price}</h2>
-                  </ItemLayout>
-                </Link>
-              );
-            })}
-          </div>
-          <div>
-            <h2>Recipes</h2>
-            {recipes.results.map((recipe, idx) => {
-              let isDark =
-                restaurants.length % 2 === 0 ? idx % 2 === 0 : idx % 2 !== 0;
-              return (
-                <Link to={`/recipe/${recipe.id}`} key={`recipe-${idx}`}>
-                  <ItemLayout dark={isDark}>
-                    <RecipeItemLayout>
-                      <h2>{recipe.title}</h2>
-                      <p>
-                        Prep:{" "}
-                        {recipe.preparationMinutes
-                          ? recipe.preparationMinutes
-                          : "?"}{" "}
-                        minutes
-                      </p>
-                      <p>Cook: {recipe.readyInMinutes} minutes</p>
-                    </RecipeItemLayout>
-                    <h2>${recipe.pricePerServing / 100}</h2>
-                  </ItemLayout>
-                </Link>
-              );
-            })}
-          </div>
-        </ColumnLayout>
-      </Container>
-    );
-  }
+  let results = loading ? (
+    <div>Loading...</div>
+  ) : (
+    <Container>
+      <HeadingLayout>
+        <h1>Search Results for </h1>
+        <NavLayout>
+          <NavSelect
+            onChange={event => setSelectedList(event.target.value)}
+            defaultValue=""
+          >
+            <option value="" hidden="hidden" />
+            <option>Favorites</option>
+            <option>To Explore</option>
+            <option>Do Not Show</option>
+          </NavSelect>
+          <NavButton
+            onClick={() => {
+              if (selectedList !== "") {
+                props.history.push(`/lists/${selectedList}`);
+              }
+            }}
+          >
+            Manage Lists
+          </NavButton>
+          <NavButton
+            onClick={() => {
+              props.history.push("/");
+            }}
+          >
+            Return to Search
+          </NavButton>
+        </NavLayout>
+      </HeadingLayout>
+      <ColumnLayout>
+        <div>
+          <h2>Restaurants</h2>
+          {restaurants.map((restaurant, idx) => {
+            let isDark =
+              restaurants.length % 2 === 0 ? idx % 2 === 0 : idx % 2 !== 0;
+            return (
+              <Link to={`/restaurant/${idx}`} key={`restaurant-${idx}`}>
+                <ItemLayout dark={isDark}>
+                  <RestaurantItemLayout>
+                    <h2>{restaurant.name}</h2>
+                    <p>Drive: </p>
+                    <p />
+                  </RestaurantItemLayout>
+                  <h2>{restaurant.price}</h2>
+                </ItemLayout>
+              </Link>
+            );
+          })}
+        </div>
+        <div>
+          <h2>Recipes</h2>
+          {recipes.results.map((recipe, idx) => {
+            let isDark =
+              restaurants.length % 2 === 0 ? idx % 2 === 0 : idx % 2 !== 0;
+            return (
+              <Link to={`/recipe/${idx}`} key={`recipe-${idx}`}>
+                <ItemLayout dark={isDark}>
+                  <RecipeItemLayout>
+                    <h2>{recipe.title}</h2>
+                    <p>
+                      Prep:{" "}
+                      {recipe.preparationMinutes
+                        ? recipe.preparationMinutes
+                        : "?"}{" "}
+                      minutes
+                    </p>
+                    <p>Cook: {recipe.readyInMinutes} minutes</p>
+                  </RecipeItemLayout>
+                  <h2>${recipe.pricePerServing / 100}</h2>
+                </ItemLayout>
+              </Link>
+            );
+          })}
+        </div>
+      </ColumnLayout>
+    </Container>
+  );
   return results;
 };
 
