@@ -3,7 +3,7 @@ Feature: Results Page
 Background:
   Given I am on the Search Page
   And I have entered a search query "burger"
-  And 5 for the number of results to be displayed
+  And 2 for the number of results to be displayed
   And I clicked the "Feed Me!" button
 
 Scenario: Viewing the Results Page
@@ -11,9 +11,10 @@ Scenario: Viewing the Results Page
   Then the page will have the title: Results for "burger"
   And the page will have a collage of photos related to the search query
   And the page will have a dropdown box with the predefined lists
-  And the page will have a button labeled "Manage List"
+  And the page will have a button labeled "Manage Lists"
+  And the page will have a button labeled "Return to Search"
   And the page will have two columns of results titled: Restaurants, Recipes
-  And the page will have at most 5 restaurant and recipe results in each column
+  And the page will have at most 2 restaurant and recipe results in each column
   And each restaurant item on the page will have an address, name, and minutes
   And each recipe item on the page will have a name, stars, prep time, and cook time
 

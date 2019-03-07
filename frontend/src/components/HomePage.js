@@ -34,8 +34,8 @@ let HomePage = props => {
     const [loading, setLoading] = useState(false);
 
     const sendQuery = () => {
-        if (numResults < 5) {
-            alert("Results must be greater than 5!");
+        if (numResults < 1) {
+            alert("Results must be greater than 1!");
             return;
         }
 

@@ -24,23 +24,30 @@ Then("the page will have the title: Results for {string}") do |string|
 end
 
 Then("the page will have a collage of photos related to the search query") do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(page).to have_css('img')
 end
 
 Then("the page will have a dropdown box with the predefined lists") do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(page).to have_select 'lists',
+                  with_options: ['Favorites', 'To Explore', 'Do Not Show']
 end
 
 Then("the page will have a button labeled {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(page).to have_button(string)
 end
 
 Then("the page will have two columns of results titled: Restaurants, Recipes") do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(page).to have_css('#recipe-list')
+  expect(page).to have_css('#restaurant-list')
 end
 
 Then("the page will have at most {int} restaurant and recipe results in each column") do |int|
-  pending # Write code here that turns the phrase above into concrete actions
+  x = 0
+  until x == int
+    expect(page).to have_css('#restaurant-' + x.to_s)
+    expect(page).to have_css('#recipe-' + x.to_s)
+    x = x + 1
+  end
 end
 
 Then("each restaurant item on the page will have an address, name, and minutes") do

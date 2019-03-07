@@ -118,6 +118,7 @@ let SearchPage = props => {
         <NavLayout>
           <NavSelect
             onChange={event => setSelectedList(event.target.value)}
+            id="lists"
             defaultValue=""
           >
             <option value="" hidden="hidden" />
@@ -144,11 +145,12 @@ let SearchPage = props => {
         </NavLayout>
       </HeadingLayout>
 
-      <PhotoBox>
+      <PhotoBox id="collage">
         {recipes.results.map((recipe, idx) => {
           return (
             <Photo
               key={"recipe-photo-" + idx}
+                id={`recipe-photo-${idx}`}
               left={Math.random() * (idx + 25)}
               top={Math.random() * (idx + 25)}
               rot={Math.random() * (idx + 30)}
@@ -160,6 +162,7 @@ let SearchPage = props => {
           return (
             <Photo
               key={"restaurant-photo-" + idx}
+              id={`restaurant-photo-${idx}`}
               left={Math.random() * (idx + 25)}
               top={Math.random() * (idx + 25)}
               rot={-Math.random() * (idx + 30)}
@@ -170,7 +173,7 @@ let SearchPage = props => {
       </PhotoBox>
 
       <ColumnLayout>
-        <div>
+        <div id="restaurant-list">
           <h2>Restaurants</h2>
           {restaurants.map((restaurant, idx) => {
             let isDark =
@@ -185,6 +188,7 @@ let SearchPage = props => {
               <Link
                 to={`/restaurant/${idx + restaurantOffset}`}
                 key={`restaurant-${idx}`}
+                id={`restaurant-${idx}`}
               >
                 <ItemLayout dark={isDark}>
                   <RestaurantItemLayout>
@@ -197,13 +201,13 @@ let SearchPage = props => {
             );
           })}
         </div>
-        <div>
+        <div id="recipe-list">
           <h2>Recipes</h2>
           {recipes.results.map((recipe, idx) => {
             let isDark =
               restaurants.length % 2 === 0 ? idx % 2 === 0 : idx % 2 !== 0;
             return (
-              <Link to={`/recipe/${idx + recipeOffset}`} key={`recipe-${idx}`}>
+              <Link to={`/recipe/${idx + recipeOffset}`} key={`recipe-${idx}`} id={`recipe-${idx}`}>
                 <ItemLayout dark={isDark}>
                   <RecipeItemLayout>
                     <h2>{recipe.title}</h2>
