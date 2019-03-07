@@ -25,7 +25,7 @@ Scenario: Navigating to a list by using the dropdown
 
 Scenario: Navigating back to the Search Page by using the "Return to Search" button
   Given I am on the Results Page
-  When I click the "Return to Search Page" button
+  When I click the "Return to Search" button
   Then I will be on the Search Page
 
 Scenario: Navigating to a Restaurant Page by clicking on a restaurant item

@@ -15,11 +15,12 @@ Given("I clicked the {string} button") do |string|
 end
 
 Given("I am on the Results Page") do
+  sleep(2)
   expect(page).to have_current_path('/search')
 end
 
 Then("the page will have the title: Results for {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(page).to have_content(string)
 end
 
 Then("the page will have a collage of photos related to the search query") do
@@ -51,15 +52,16 @@ Then("each recipe item on the page will have a name, stars, prep time, and cook 
 end
 
 When("I select {string} from the dropdown") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
+  select string
 end
 
 When("I click the {string} button") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
+  click_on string
 end
 
 Then("I will be on the {string} list page") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
+  sleep(1)
+  expect(page).to have_current_path('/lists/' + string)
 end
 
 Then("I will be on the Search Page") do

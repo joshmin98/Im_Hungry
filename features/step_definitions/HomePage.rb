@@ -15,5 +15,6 @@ When("I click the button with the label: Feed Me!") do
 end
 
 Then("I will transition to the Results Page") do
+  sleep(2)
   expect(page).to have_current_path('/search')
 end
