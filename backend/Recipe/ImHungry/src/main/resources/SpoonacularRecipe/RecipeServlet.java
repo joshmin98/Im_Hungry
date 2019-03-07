@@ -40,17 +40,21 @@ public class RecipeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		response.setContentType("application/json");
+		
+		String query = request.getParameter("query");
+		int num = request.getParameter("numResults");
+		
+		getRecipeData(query, numResults);
+		
+	}
+	
+	public static getRecipeData(String query, int num) {
+		
 		String API_KEY = "885e38805emsh424ffd2e4016f98p1cb3efjsn55402a4c6758";
 		String URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/";
 		
-		/* replace SOUP with QUERY and 3 with NUM
-		 * 
-		 * int num = request.getParameter("numResults");
-		 * String query = request.getParameter("query");
-		 */
-		
-		URL += "recipes/searchComplex?query=soup&ranking=2&addRecipeInformation=true";
-		URL += "&limitLicense=true&offset=0&number=3";
+		URL += "recipes/searchComplex?query=" + query + "&ranking=2&addRecipeInformation=true";
+		URL += "&limitLicense=true&offset=0&number=" + num;
 
 		HttpResponse<JsonNode> jsonResponse = null;
 
@@ -67,7 +71,9 @@ public class RecipeServlet extends HttpServlet {
 		
 		System.out.println(prettyJson);
 		
+		
 	}
+	
 	public static String convertPrettyJSON(String u) {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		JsonParser jp = new JsonParser();
