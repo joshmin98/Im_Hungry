@@ -65,22 +65,25 @@ Then("I will be on the {string} list page") do |string|
 end
 
 Then("I will be on the Search Page") do
-  pending # Write code here that turns the phrase above into concrete actions
+  sleep(1)
+  expect(page).to have_current_path('/')
 end
 
 When("I click on a restaurant with name {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
+  click_on string
 end
 
 Then("I will be on the Restaurant Page of restaurant {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
+  # TODO
+  expect(page).to have_content(string)
 end
 
 When("I click on a recipe with name {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
+  click_on string
 end
 
 Then("I will be on the Recipe Page of recipe {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
+  # TODO
+  expect(page).to have_content(string)
 end
 
