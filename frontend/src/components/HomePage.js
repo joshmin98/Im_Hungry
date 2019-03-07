@@ -136,7 +136,12 @@ let HomePage = props => {
     <PageLayout>
       <h1>I'm Hungry</h1>
       <SearchLayout>
-        <form onSubmit={sendQuery}>
+        <form
+          onSubmit={event => {
+            event.preventDefault();
+            sendQuery();
+          }}
+        >
           <label />
           Search:
           <SearchInput
