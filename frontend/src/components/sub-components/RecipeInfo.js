@@ -64,8 +64,8 @@ class RecipeInfo extends React.Component {
             <div className={classes.root}>
                 <h1 className={classes.header}>{this.state.name}</h1>
                 <img src={this.state.img} alt={this.state.name} className={classes.imgSize} />
-                <p><strong>Prep time: </strong> {this.state.preptime}</p>
-                <p><strong>Cook time: </strong> {this.state.cookTime}</p>
+                <p id="prepTime"><strong>Prep time: </strong> {this.state.preptime}</p>
+                <p id="cookTime"><strong>Cook time: </strong> {this.state.cookTime}</p>
                 <p><strong>Ingredients: </strong></p>
                 <Grid container spacing={24} className={classes.containerGrid}>
                     <Grid item xs={6}>
