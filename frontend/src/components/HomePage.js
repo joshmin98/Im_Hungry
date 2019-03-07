@@ -136,19 +136,29 @@ let HomePage = props => {
     <PageLayout>
       <h1>I'm Hungry</h1>
       <SearchLayout>
-        <SearchInput
-          value={searchQuery}
-          onChange={event => {
-            setSearchQuery(event.target.value);
-          }}
-        />
-        <SearchInput
-          value={numResults}
-          onChange={event => {
-            setNumResults(event.target.value);
-          }}
-        />
-        <SearchButton onClick={sendQuery}>I'm Hungry</SearchButton>
+        <form onSubmit={sendQuery}>
+          <label />
+          Search:
+          <SearchInput
+            value={searchQuery}
+            id="search"
+            onChange={event => {
+              setSearchQuery(event.target.value);
+            }}
+          />
+          <label />
+          <label>
+            Num Results:
+            <SearchInput
+              value={numResults}
+              id="numResults"
+              onChange={event => {
+                setNumResults(event.target.value);
+              }}
+            />
+          </label>
+          <SearchButton onClick={sendQuery}>Feed Me!</SearchButton>
+        </form>
       </SearchLayout>
       {loading ? <p>Loading...</p> : null}
     </PageLayout>
