@@ -72,6 +72,16 @@ const Photo = styled.img`
   transform: rotate(${props => props.rot}deg);
 `;
 
+let fetchDrivetime = async to => {
+  let resp = await fetch(
+    `http://www.mapquestapi.com/directions/v2/route?key=M0uBDKuMB2ap4E5dt1gMTkXqj7eYeAgc&from=USC,Los Angeles,CA&to=${
+      to.address1
+    },${to.city},${to.state}`
+  );
+  let data = await resp.json();
+  return data.route.formattedTime;
+};
+
 let SearchPage = props => {
   const [restaurants, setRestaurants] = useState([{}]);
   const [recipes, setRecipes] = useState({ results: [{}] });
@@ -80,6 +90,7 @@ let SearchPage = props => {
   const [loading, setLoading] = useState(true);
   const [recipeOffset, setRecipeOffset] = useState(0);
   const [restaurantOffset, setRestaurantOffset] = useState(0);
+  const [driveTimes, setDriveTimes] = useState([]);
 
   useEffect(() => {
     let localStorageRecipes = JSON.parse(localStorage.getItem("searchRecipes"));
@@ -137,6 +148,7 @@ let SearchPage = props => {
         {recipes.results.map((recipe, idx) => {
           return (
             <Photo
+              key={"recipe-photo-" + idx}
               left={Math.random() * (idx + 25)}
               top={Math.random() * (idx + 25)}
               rot={Math.random() * (idx + 30)}
@@ -147,9 +159,10 @@ let SearchPage = props => {
         {restaurants.map((restaurant, idx) => {
           return (
             <Photo
+              key={"restaurant-photo-" + idx}
               left={Math.random() * (idx + 25)}
               top={Math.random() * (idx + 25)}
-              rot={Math.random() * (idx + 30)}
+              rot={-Math.random() * (idx + 30)}
               src={restaurant.image_url}
             />
           );
@@ -162,6 +175,12 @@ let SearchPage = props => {
           {restaurants.map((restaurant, idx) => {
             let isDark =
               restaurants.length % 2 === 0 ? idx % 2 === 0 : idx % 2 !== 0;
+            /* let driveTime = fetchDrivetime(restaurant.location).then(data => { */
+            /*   let newArr = driveTimes; */
+            /*   newArr.push(data); */
+            /*   setDriveTimes(newArr); */
+            /* }); */
+
             return (
               <Link
                 to={`/restaurant/${idx + restaurantOffset}`}
@@ -170,8 +189,7 @@ let SearchPage = props => {
                 <ItemLayout dark={isDark}>
                   <RestaurantItemLayout>
                     <h2>{restaurant.name}</h2>
-                    <p>Drive: </p>
-                    <p />
+                    <p>Drive: {driveTimes[idx]}</p>
                   </RestaurantItemLayout>
                   <h2>{restaurant.price}</h2>
                 </ItemLayout>

@@ -114,34 +114,39 @@ let ListManagementPage = props => {
       </HeadingLayout>
 
       {recipes.map((recipe, idx) => {
+        let allRecipes = JSON.parse(localStorage.getItem("recipes"));
+        allRecipes = allRecipes.results;
+        let item = allRecipes[recipe];
         return (
-          <Link to={`/recipe/${recipe.id}`} key={"recipe" + idx}>
+          <Link to={`/recipe/${recipe}`} key={"recipe-" + idx}>
             <ItemLayout dark={idx % 2 === 0}>
               <RecipeItemLayout>
-                <h2>{recipe.title}</h2>
+                <h2>{item.title}</h2>
                 <p>
                   Prep:{" "}
-                  {recipe.preparationMinutes ? recipe.preparationMinutes : "?"}{" "}
+                  {item.preparationMinutes ? item.preparationMinutes : "?"}{" "}
                   minutes
                 </p>
-                <p>Cook: {recipe.readyInMinutes} minutes</p>
+                <p>Cook: {item.readyInMinutes} minutes</p>
               </RecipeItemLayout>
-              <h2>${recipe.pricePerServing / 100}</h2>
+              <h2>${item.pricePerServing / 100}</h2>
             </ItemLayout>
           </Link>
         );
       })}
       {restaurants.map((restaurant, idx) => {
         let isDark = recipes.length % 2 === 0 ? idx % 2 === 0 : idx % 2 !== 0;
+        let allRestaurants = JSON.parse(localStorage.getItem("restaurants"));
+        let item = allRestaurants[restaurant];
         return (
-          <Link to={`/restaurant/${restaurant.id}`} key={"restaurant" + idx}>
+          <Link to={`/restaurant/${restaurant}`} key={"restaurant-" + idx}>
             <ItemLayout dark={isDark}>
               <RestaurantItemLayout>
-                <h2>{restaurant.name}</h2>
+                <h2>{item.name}</h2>
                 <p>Drive: </p>
                 <p />
               </RestaurantItemLayout>
-              <h2>{restaurant.price}</h2>
+              <h2>{item.price}</h2>
             </ItemLayout>
           </Link>
         );
