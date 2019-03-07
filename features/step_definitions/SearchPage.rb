@@ -3,11 +3,11 @@ Given("I am on the Search Page") do
 end
 
 Given("I have entered a search query {string}") do |string|
-  find.('search').set(string)
+  fill_in 'Enter Food', with: string
 end
 
 Given("{int} for the number of results to be displayed") do |int|
-  find.('numResults').set(int)
+  fill_in 'numResults', with: int
 end
 
 Given("I clicked the {string} button") do |string|
