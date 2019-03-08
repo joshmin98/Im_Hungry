@@ -72,15 +72,6 @@ const Photo = styled.img`
   transform: rotate(${props => props.rot}deg);
 `;
 
-let fetchDrivetime = async to => {
-  let resp = await fetch(
-    `http://www.mapquestapi.com/directions/v2/route?key=M0uBDKuMB2ap4E5dt1gMTkXqj7eYeAgc&from=USC,Los Angeles,CA&to=${
-      to.address1
-    },${to.city},${to.state}`
-  );
-  let data = await resp.json();
-  return data.route.formattedTime;
-};
 
 let SearchPage = props => {
   const [restaurants, setRestaurants] = useState([{}]);
@@ -91,6 +82,18 @@ let SearchPage = props => {
   const [recipeOffset, setRecipeOffset] = useState(0);
   const [restaurantOffset, setRestaurantOffset] = useState(0);
   const [driveTimes, setDriveTimes] = useState([]);
+
+    let fetchDrivetime =  (to, idx) => {
+        return fetch(
+            `http://www.mapquestapi.com/directions/v2/route?key=M0uBDKuMB2ap4E5dt1gMTkXqj7eYeAgc&from=USC,Los Angeles,CA&to=${
+            to.address1
+    },${to.city},${to.state}`
+        ).then(resp => resp.json()).then(data => {
+            let update = driveTimes;
+            update[idx] = data.route.formattedTime;
+            setDriveTimes(update);
+        });
+    };
 
   useEffect(() => {
     let localStorageRecipes = JSON.parse(localStorage.getItem("searchRecipes"));
@@ -104,6 +107,7 @@ let SearchPage = props => {
     setRecipes(localStorageRecipes);
     setRecipeOffset(recipeIndex);
     setQuery(localStorage.getItem("query"));
+    setDriveTimes(new Array(restaurants.length));
     setLoading(false);
   }, []);
 
@@ -159,6 +163,7 @@ let SearchPage = props => {
           );
         })}
         {restaurants.map((restaurant, idx) => {
+            console.log(restaurant);
           return (
             <Photo
               key={"restaurant-photo-" + idx}
@@ -178,11 +183,8 @@ let SearchPage = props => {
           {restaurants.map((restaurant, idx) => {
             let isDark =
               restaurants.length % 2 === 0 ? idx % 2 === 0 : idx % 2 !== 0;
-            /* let driveTime = fetchDrivetime(restaurant.location).then(data => { */
-            /*   let newArr = driveTimes; */
-            /*   newArr.push(data); */
-            /*   setDriveTimes(newArr); */
-            /* }); */
+              let driveTime = fetchDrivetime(restaurant.location, idx);
+              console.log(driveTimes);
 
             return (
               <Link

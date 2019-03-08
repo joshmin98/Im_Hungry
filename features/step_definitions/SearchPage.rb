@@ -41,7 +41,7 @@ Then("the page will have two columns of results titled: Restaurants, Recipes") d
   expect(page).to have_css('#restaurant-list')
 end
 
-Then("the page will have at most {int} restaurant and recipe results in each column") do |int|
+Then("the page will have {int} restaurant and recipe results in each column") do |int|
   x = 0
   until x == int
     expect(page).to have_css('#restaurant-' + x.to_s)

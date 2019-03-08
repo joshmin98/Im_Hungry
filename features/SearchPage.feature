@@ -14,7 +14,7 @@ Scenario: Viewing the Results Page
   And the page will have a button labeled "Manage Lists"
   And the page will have a button labeled "Return to Search"
   And the page will have two columns of results titled: Restaurants, Recipes
-  And the page will have at most 2 restaurant and recipe results in each column
+  And the page will have 2 restaurant and recipe results in each column
   And each restaurant item on the page will have an address, name, and minutes
   And each recipe item on the page will have a name, stars, prep time, and cook time
 
