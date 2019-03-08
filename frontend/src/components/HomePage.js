@@ -41,6 +41,19 @@ let HomePage = props => {
 
         setLoading(true);
 
+        /* let fetchDrivetime =  (to, idx) => {
+         *     return fetch(
+         *         `http://www.mapquestapi.com/directions/v2/route?key=M0uBDKuMB2ap4E5dt1gMTkXqj7eYeAgc&from=USC,Los Angeles,CA&to=${
+         *         to.address1
+           },${to.city},${to.state}`
+         *     ).then(resp => resp.json()).then(data => {
+         *         let update = driveTimes;
+         *         update[idx] = data.route.formattedTime;
+         *         setDriveTimes(update);
+         *     });
+         * };
+         */
+
         fetch(
             `${url_prefix}/RecipeServlet?query=${searchQuery}&numResults=${numResults}`
         )

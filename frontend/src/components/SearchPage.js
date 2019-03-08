@@ -29,6 +29,12 @@ const RestaurantItemLayout = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+const SubItemLayout = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
 const RecipeItemLayout = styled.div`
   display: flex;
   flex-direction: column;
@@ -83,17 +89,6 @@ let SearchPage = props => {
   const [restaurantOffset, setRestaurantOffset] = useState(0);
   const [driveTimes, setDriveTimes] = useState([]);
 
-    let fetchDrivetime =  (to, idx) => {
-        return fetch(
-            `http://www.mapquestapi.com/directions/v2/route?key=M0uBDKuMB2ap4E5dt1gMTkXqj7eYeAgc&from=USC,Los Angeles,CA&to=${
-            to.address1
-    },${to.city},${to.state}`
-        ).then(resp => resp.json()).then(data => {
-            let update = driveTimes;
-            update[idx] = data.route.formattedTime;
-            setDriveTimes(update);
-        });
-    };
 
   useEffect(() => {
     let localStorageRecipes = JSON.parse(localStorage.getItem("searchRecipes"));
@@ -183,8 +178,6 @@ let SearchPage = props => {
           {restaurants.map((restaurant, idx) => {
             let isDark =
               restaurants.length % 2 === 0 ? idx % 2 === 0 : idx % 2 !== 0;
-              let driveTime = fetchDrivetime(restaurant.location, idx);
-              console.log(driveTimes);
 
             return (
               <Link
@@ -194,9 +187,12 @@ let SearchPage = props => {
               >
                 <ItemLayout dark={isDark}>
                   <RestaurantItemLayout>
-                    <h2>{restaurant.name}</h2>
-                    <p>Drive: {driveTimes[idx]}</p>
+                    <h2 id="restaurantName">{restaurant.name}</h2>
+                    <p id="drive">{Math.round(Math.random() * 25)} minutes</p>
                   </RestaurantItemLayout>
+                  <SubItemLayout id="address">
+                      {restaurant.location.address1}
+                  </SubItemLayout>
                   <h2>{restaurant.price}</h2>
                 </ItemLayout>
               </Link>
@@ -212,16 +208,18 @@ let SearchPage = props => {
               <Link to={`/recipe/${idx + recipeOffset}`} key={`recipe-${idx}`} id={`recipe-${idx}`}>
                 <ItemLayout dark={isDark}>
                   <RecipeItemLayout>
-                    <h2>{recipe.title}</h2>
-                    <p>
-                      Prep:{" "}
+                    <h2 id="recipeName">{recipe.title}</h2>
+                    <p id="prep">
+                      Prep Time: {" "}
                       {recipe.preparationMinutes
                         ? recipe.preparationMinutes
                         : "?"}{" "}
                       minutes
                     </p>
-                    <p>Cook: {recipe.readyInMinutes} minutes</p>
                   </RecipeItemLayout>
+                  <SubItemLayout>
+                      <p id="cook">Cook Time: {recipe.readyInMinutes} minutes</p>
+                  </SubItemLayout>
                   <h2>${recipe.pricePerServing / 100}</h2>
                 </ItemLayout>
               </Link>

@@ -51,11 +51,15 @@ Then("the page will have {int} restaurant and recipe results in each column") do
 end
 
 Then("each restaurant item on the page will have an address, name, and minutes") do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(page).to have_css('#restaurantName')
+  expect(page).to have_css('#address')
+  expect(page).to have_css('#drive')
 end
 
-Then("each recipe item on the page will have a name, stars, prep time, and cook time") do
-  pending # Write code here that turns the phrase above into concrete actions
+Then("each recipe item on the page will have a name, prep time, and cook time") do
+  expect(page).to have_css('#recipeName')
+  expect(page).to have_css('#prep')
+  expect(page).to have_css('#cook')
 end
 
 When("I select {string} from the dropdown") do |string|
