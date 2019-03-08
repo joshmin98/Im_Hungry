@@ -24,7 +24,8 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.2.1</version>
 				<configuration>
-					<warSourceDirectory>WebContent</warSourceDirectory>
+					<warSourceDirectory>src/main/webapp</warSourceDirectory>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -108,35 +109,26 @@
     
     <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
 <dependency>
-    <groupId>org.apache.httpcomponents</groupId>
-    <artifactId>httpcore</artifactId>
-    <version>4.0-beta3</version>
+  <groupId>org.apache.httpcomponents</groupId>
+  <artifactId>httpclient</artifactId>
+  <version>4.3.3</version>
 </dependency>
-    
-    <dependency>
-    	<groupId>org.apache.httpcomponents</groupId>
-    	<artifactId>httpclient</artifactId>
-    	<version>4.3.6</version>
-    </dependency>
-    
-    <dependency>
-    	<groupId>org.apache.httpcomponents</groupId>
-    	<artifactId>httpasyncclient</artifactId>
-    	<version>4.0.2</version>
-    </dependency>
-    
-    <dependency>
-    	<groupId>org.apache.httpcomponents</groupId>
-    	<artifactId>httpmime</artifactId>
-    	<version>4.3.6</version>
-    </dependency>
-    
-    <dependency>
-    	<groupId>org.json</groupId>
-    	<artifactId>json</artifactId>
-    	<version>20140107</version>
-    </dependency>
-    
+<dependency>
+  <groupId>org.apache.httpcomponents</groupId>
+  <artifactId>httpasyncclient</artifactId>
+  <version>4.0.1</version>
+</dependency>
+<dependency>
+  <groupId>org.apache.httpcomponents</groupId>
+  <artifactId>httpmime</artifactId>
+  <version>4.3.3</version>
+</dependency>
+<dependency>
+  <groupId>org.json</groupId>
+  <artifactId>json</artifactId>
+  <version>20140107</version>
+</dependency>
+
   </dependencies>
   
 </project>
