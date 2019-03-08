@@ -40,31 +40,31 @@ class RestaurantInfo extends React.Component {
   openGoogle = () => {
     let link =
       "http://maps.google.com/maps?q=" + encodeURIComponent(this.state.address);
-    window.open(link, "blank");
+    window.location.replace(link);
   };
   openWebsite = () => {
-    window.open(this.state.website, "blank");
+    window.location.replace(this.state.website);
   };
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
         <h1 className={classes.header}>{this.state.name}</h1>
-        <p>
+        <p id="address">
           <strong>Address:</strong>{" "}
-          <span onClick={this.openGoogle} className={classes.hoverText}>
+          <button onClick={this.openGoogle} className={classes.hoverText}>
             {this.state.address}
-          </span>
+          </button>
         </p>
-        <p>
+        <p id="number">
           <strong>Phone Number: </strong>
           {this.state.phone}
         </p>
-        <p>
+        <p id="website">
           <strong>Website: </strong>{" "}
-          <span onClick={this.openWebsite} className={classes.hoverText}>
+          <button onClick={this.openWebsite} className={classes.hoverText}>
             {this.state.website}
-          </span>
+          </button>
         </p>
       </div>
     );
