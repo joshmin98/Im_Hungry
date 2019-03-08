@@ -6,11 +6,23 @@ Background:
   And 3 for the number of results to be displayed
   And I clicked the "Feed Me!" button
 
-Scenario: Adding an item to the "Favorites" list
+Scenario: Adding a restaurant to the "Favorites" list
   Given I am on the Results Page
   When I click on a restaurant with name "x"
   And I select "Favorites" from the dropdown
   And I click the "Add to List" button
+  And I select "Favorites" from the dropdown
+  And I click the "Back to Result" button
+  And I click the "Manage List" button
+  Then I will be on the "Favorites" List Management Page
+  And "x" will be in the list
+
+Scenario: Adding a recipe to the "Favorites" list
+  Given I am on the Results Page
+  When I click on a recipe with name "x"
+  And I select "Favorites" from the dropdown
+  And I click the "Add to List" button
+  And I select "Favorites" from the dropdown
   And I click the "Back to Result" button
   And I click the "Manage List" button
   Then I will be on the "Favorites" List Management Page

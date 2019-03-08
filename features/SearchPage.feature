@@ -16,7 +16,7 @@ Scenario: Viewing the Results Page
   And the page will have two columns of results titled: Restaurants, Recipes
   And the page will have 2 restaurant and recipe results in each column
   And each restaurant item on the page will have an address, name, and minutes
-  And each recipe item on the page will have a name, stars, prep time, and cook time
+  And each recipe item on the page will have a name, prep time, and cook time
 
 Scenario: Navigating to a list by using the dropdown
   Given I am on the Results Page
@@ -38,3 +38,8 @@ Scenario: Navigating to a Recipe Page by clicking on a recipe item
   Given I am on the Results Page
   When I click on a recipe with name "x"
   Then I will be on the Recipe Page of recipe "x"
+
+Scenario: Trying to navigate to the list management page with nothing selected
+  Given I am on the Results Page
+  When I click the "Manage List" button
+  Then I will transition to the Results Page
