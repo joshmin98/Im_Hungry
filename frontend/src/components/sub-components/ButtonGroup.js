@@ -4,8 +4,7 @@ import Button from "@material-ui/core/Button"
 import {withStyles} from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
 import NativeSelect from "@material-ui/core/NativeSelect";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
+import PrintPage from "../PrintPage";
 
 const styles = theme => ({
     root: {
@@ -34,18 +33,6 @@ class ButtonGroup extends React.Component {
         this.setState({
             value: e.target.value
         });
-    };
-    printDocument = () => {
-        const id = this.props.passId;
-        const input = document.getElementById(id);
-        console.log(id);
-        html2canvas(input, {width: '800px', height: '1000px', scale: 0.8})
-            .then((canvas) => {
-                const imgData = canvas.toDataURL('/image/png');
-                const pdf = new jsPDF();
-                pdf.addImage(imgData, 'JPEG', 0, 0);
-                pdf.save("download.pdf");
-            });  
     };
     addToList = () => {
         const list = this.state.value;
@@ -78,6 +65,9 @@ class ButtonGroup extends React.Component {
     }
     handBack = () => {
         this.props.history.push("/search");
+    }
+    printDocument = () => {
+        this.props.restaurant ? this.props.history.push("/print/restaurant/" + this.props.id) : this.props.history.push("/print/recipe/" + this.props.id); 
     }
     render() {
         const {classes} = this.props;

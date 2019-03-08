@@ -25,3 +25,17 @@ end
 Then("I see cook time") do
   expect(page).to have_css('#cookTime')
 end
+
+Then("I see ingredients") do
+  expect(page).to have_css('#ingredientLeft')
+end
+
+Then("I see instructions") do
+  expect(page).to have_css('#ingredientLeft')
+end
+
+Then("I will be on Print page") do
+  expect(page).to have_current_path('/print/recipe/3')
+end
+
+

@@ -69,7 +69,7 @@ class RecipeInfo extends React.Component {
                 <p><strong>Ingredients: </strong></p>
                 <Grid container spacing={24} className={classes.containerGrid}>
                     <Grid item xs={6}>
-                        <ul>
+                        <ul id="ingredientLeft">
                             {this.state.Ingredient.map((e,i) => {
                                 if (i % 2 === 0) {
                                     return <li key={e}>{e}</li>
@@ -80,7 +80,7 @@ class RecipeInfo extends React.Component {
                         </ul>
                     </Grid>
                     <Grid item xs={6}>
-                        <ul>
+                        <ul id="ingredientRight">
                             {this.state.Ingredient.map((e,i) => {
                                 if (i % 2 !== 0) {
                                     return <li className={classes.textRight} key={e}>{e}</li>
@@ -92,7 +92,7 @@ class RecipeInfo extends React.Component {
                     </Grid>
                 </Grid>
                 <p><strong>Instructions</strong></p>
-                <ol>
+                <ol id="instructions">
                     {this.state.Instructions.map((e) => {
                         return <li key={e}>{e}</li>
                     })}
